@@ -19,6 +19,7 @@ It will generate **Toxicity Analysis Report** for a given compound name or SMILE
 python3 scripts/explain_molecule.py --smiles "CN1C=NC2=C1C(=O)N(C(=O)N2C)C"
 
 SMILES: CN1C=NC2=C1C(=O)N(C(=O)N2C)C
+
 Flagged: none
 
 [ollama] narrative:
@@ -39,7 +40,7 @@ These suggestions are based on the assumption that the predicted liability is dr
 
 ---
 
-## Results (measured on this dataset)
+## Results (measured on this Tox21 dataset)
 
 **Evaluation honesty - same Random-Forest model, only the split changes:**
 
