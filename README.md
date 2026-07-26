@@ -15,24 +15,6 @@ and full **MLflow** experiment tracking.
 
 ---
 
-## Why this exists / what's different
-
-This started as a GAT with a random train/test split. Three things were fixed,
-in order of impact:
-
-1. **Honest evaluation.** Tox21 is evaluated with a **scaffold split** (whole
-   Bemis-Murcko scaffold groups kept on one side), and metrics are read off a
-   held-out **test** set after early-stopping on a separate **validation** set.
-   A random split with test-set early stopping inflates the number.
-2. **A bond-aware model.** The GAT never saw bond features. This uses a
-   **D-MPNN** (directed message passing, Chemprop-style) with rich atom **and**
-   bond features — implemented in pure PyTorch, so **`torch_geometric` is not a
-   dependency**.
-3. **Descriptor fusion.** A block of normalized RDKit descriptors is concatenated
-   into the readout — a cheap, reliable accuracy lever.
-
----
-
 ## Results (measured on this dataset)
 
 **Evaluation honesty — same Random-Forest model, only the split changes:**
@@ -72,7 +54,7 @@ reaches **~0.84–0.85** in the literature under the same protocol; train it wit
 
 ## Plots
 
-`python scripts/make_figures.py --data tox21.csv` (or `make figures`) regenerates
+`python3 scripts/make_figures.py --data tox21.csv` (or `make figures`) regenerates
 everything in [`reports/figures/`](reports/figures):
 
 | Dataset EDA | Evaluation |
@@ -110,7 +92,7 @@ a **local Ollama model** to write a mechanism-focused report.
 
 ```bash
 # needs trained checkpoints in saved_models/ (and optionally a running Ollama)
-python scripts/explain_molecule.py --name caffeine --model llama3.1
+python3 scripts/explain_molecule.py --name caffeine --model llama3.1
 ```
 
 If no Ollama server is reachable, a deterministic templated summary is produced
@@ -132,7 +114,7 @@ export OLLAMA_MODEL=llama3.1 OLLAMA_HOST=http://localhost:11434
 all figures + checkpoints as artifacts.
 
 ```bash
-python train.py --data tox21.csv --split scaffold --epochs 60 --ensemble 3
+python3 train.py --data tox21.csv --split scaffold --epochs 60 --ensemble 3
 mlflow ui --backend-store-uri ./mlruns     # http://localhost:5000
 ```
 
@@ -194,8 +176,3 @@ Tox21 (~7,800 compounds × 12 assays; NIH/FDA/EPA). Not redistributed here — d
 ## License
 
 MIT — see [LICENSE](LICENSE).
-
-## Acknowledgements
-
-D-MPNN architecture: Yang et al., *Analyzing Learned Molecular Representations
-for Property Prediction*, J. Chem. Inf. Model. 2019 (Chemprop).
