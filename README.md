@@ -13,6 +13,30 @@ and full **MLflow** experiment tracking.
 > name, tells you *which substructures* drove each prediction, and writes a
 > medicinal-chemistry narrative explaining the mechanism.
 
+# Case Study
+It will generate **Toxicity Analysis Report** for a given compound name or SMILE
+
+python3 scripts/explain_molecule.py --smiles "CN1C=NC2=C1C(=O)N(C(=O)N2C)C"
+
+SMILES: CN1C=NC2=C1C(=O)N(C(=O)N2C)C
+Flagged: none
+
+[ollama] narrative:
+**Toxicity Analysis Report**
+
+The provided molecule has been evaluated against 12 Tox21 assays, with no flagged targets identified.
+
+However, upon closer inspection of the atom-level saliency and matched functional groups, we can identify potential structural drivers of toxicity:
+
+1. **Nitrogen-containing heterocycle**: The presence of a pyridone ring (CN1C=NC2=C1C(=O)N(C(=O)N2C)) is flagged for its potential interaction with the hERG channel. This functional group is known to contribute to cardiac arrhythmias.
+	* Plausible mechanism: Hydrogen bonding between the nitrogen atom and the hERG channel's binding pocket, leading to potassium channel blockade.
+	* Medicinal chemistry suggestion: Replace the pyridone ring with a bioisostere such as an imidazole or a tetrazole to reduce hERG affinity while preserving the pharmacophore.
+2. **Amine group**: The presence of an amine group (N(C(=O)N2C)) is flagged for its potential interaction with the PXR receptor. This functional group is known to contribute to liver toxicity.
+	* Plausible mechanism: Hydrogen bonding between the amine group and the PXR receptor's binding pocket, leading to CYP3A4 induction and subsequent liver damage.
+	* Medicinal chemistry suggestion: Replace the amine group with a less basic bioisostere such as an ether or a thioether to reduce PXR affinity while preserving the pharmacophore.
+
+These suggestions are based on the assumption that the predicted liability is driven by these specific functional groups. Further experimental validation and optimization of the molecule's structure will be necessary to confirm these predictions.
+
 ---
 
 ## Results (measured on this dataset)
@@ -172,6 +196,7 @@ reports/figures/             Shipped example figures (regenerable).
 
 Tox21 (~7,800 compounds × 12 assays; NIH/FDA/EPA). Not redistributed here - drop
 `tox21.csv` at the repo root. Available via MoleculeNet / DeepChem.
+
 
 ## License
 
