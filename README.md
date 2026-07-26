@@ -11,20 +11,20 @@ and full **MLflow** experiment tracking.
 
 > Predicts activity across all 12 Tox21 assays from a SMILES string or chemical
 > name, tells you *which substructures* drove each prediction, and writes a
-> medicinal-chemistry narrative explaining the mechanism — entirely offline.
+> medicinal-chemistry narrative explaining the mechanism.
 
 ---
 
 ## Results (measured on this dataset)
 
-**Evaluation honesty — same Random-Forest model, only the split changes:**
+**Evaluation honesty - same Random-Forest model, only the split changes:**
 
 | Split | Mean ROC-AUC |
 |---|---|
 | random (the old methodology) | **0.8228** |
 | scaffold (honest) | **0.8057** |
 
-The mean moves ~0.017, but individual targets swing by **0.10–0.14** — a random
+The mean moves ~0.017, but individual targets swing by **0.10–0.14** - a random
 split is not a reliable estimate of generalization to novel chemistry.
 
 ![split inflation](reports/figures/compare_split_inflation.png)
@@ -43,7 +43,7 @@ reaches **~0.84–0.85** in the literature under the same protocol; train it wit
 ![GBM per-target AUC](reports/figures/gbm_per_target_auc.png)
 
 > **Honesty notes.** (a) The scaffold-split AUC is *sensitive to which scaffolds
-> land in test* — across two reasonable scaffold orderings this GBM ranged
+> land in test* - across two reasonable scaffold orderings this GBM ranged
 > ~0.79–0.83. Report the split you used. (b) The D-MPNN AUCs are
 > literature-anchored; the CI/figure machine here is CPU-only and could not fit
 > a PyTorch build, so the network's training was not executed on it (the
