@@ -1,0 +1,24 @@
+# ---- core ML (D-MPNN) ----
+torch>=2.0                 # CPU or CUDA build; torch_geometric is NOT needed
+rdkit>=2023.3
+numpy>=1.24
+pandas>=2.0
+scikit-learn>=1.3
+xgboost>=2.0               # baselines/gbm_baseline.py
+
+# ---- experiment tracking ----
+mlflow>=2.9
+
+# ---- plots ----
+matplotlib>=3.7
+seaborn>=0.12
+
+# ---- local LLM explanations (Ollama) ----
+requests>=2.31            # talks to the local Ollama HTTP server
+
+# ---- input resolution / serving (optional, for the API + name lookup) ----
+pubchempy>=1.0
+fastapi>=0.110
+uvicorn>=0.29
+pydantic>=2.0
+python-dotenv>=1.0

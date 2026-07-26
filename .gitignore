@@ -1,0 +1,28 @@
+# data (bring your own tox21.csv)
+tox21.csv
+*.csv
+!reports/**/*.csv
+
+# model artifacts
+saved_models/
+*.pt
+
+# mlflow
+mlruns/
+mlartifacts/
+
+# generated explanations (keep example figures under reports/figures)
+reports/explanations/
+
+# python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+
+# os / editor
+.DS_Store
+.ipynb_checkpoints/
+.vscode/
+.idea/
