@@ -170,7 +170,7 @@ reports/figures/             Shipped example figures (regenerable).
 
 ## Data
 
-Tox21 (~7,800 compounds × 12 assays; NIH/FDA/EPA). Not redistributed here — drop
+Tox21 (~7,800 compounds × 12 assays; NIH/FDA/EPA). Not redistributed here - drop
 `tox21.csv` at the repo root. Available via MoleculeNet / DeepChem.
 
 ## License
